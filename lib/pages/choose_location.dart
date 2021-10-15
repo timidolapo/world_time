@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:world_time/pages/home.dart';
 import 'package:world_time/services/world_time.dart';
 
 class ChooseLocation extends StatefulWidget {
@@ -18,19 +19,23 @@ class _ChooseLocationState extends State<ChooseLocation> {
     WorldTime(url: 'America/New_York', location: 'New York', flag: 'usa.png'),
     WorldTime(url: 'Asia/Seoul', location: 'Seoul', flag: 'south_korea.png'),
     WorldTime(url: 'Asia/Jakarta', location: 'Jakarta', flag: 'indonesia.png'),
+    WorldTime(url: 'Africa/Lagos', location: 'Lagos', flag: 'nigeria.png'),
   ];
 
   void updateTime(index) async {
     WorldTime instance = locations[index];
     await instance.getTime();
 
-    //navigate to home screen
-    Navigator.pop(context, {
-      'location': instance.location,
-      'flag': instance.flag,
-      'time': instance.time,
-      'isDaytime': instance.isDaytime,
-    });
+    Navigator.pushReplacementNamed(
+      context,
+      '/home',
+      arguments: {
+        'location': instance.location,
+        'flag': instance.flag,
+        'time': instance.time,
+        'isDaytime': instance.isDaytime,
+      },
+    );
   }
 
   @override

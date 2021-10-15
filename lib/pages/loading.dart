@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:world_time/pages/home.dart';
 import 'package:world_time/services/world_time.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
@@ -14,6 +15,8 @@ class _LoadingState extends State<Loading> {
     WorldTime instance = WorldTime(
         location: 'Berlin', flag: 'germany.png', url: 'Europe/Berlin');
     await instance.getTime();
+    // Navigator.of(context).pushReplacement(
+    //     MaterialPageRoute(builder: (context) => Home(location: "England")));
     Navigator.pushReplacementNamed(
       context,
       '/home',
@@ -36,7 +39,7 @@ class _LoadingState extends State<Loading> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blue[900],
-      body: Center(
+      body: const Center(
         child: SpinKitFadingCircle(
           color: Colors.white,
           size: 80.0,

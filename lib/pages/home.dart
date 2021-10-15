@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
+  const Home({Key? key, this.location}) : super(key: key);
+  final String? location;
   @override
   _HomeState createState() => _HomeState();
 }
@@ -10,11 +12,11 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    //
+    //return Scaffold(body: Center(child: Text('${widget.location}')));
+
     data =
         data.isEmpty ? ModalRoute.of(context)!.settings.arguments as Map : data;
     print(data);
-
     //set background
     String bgImage = data['isDaytime'] ? 'day.png' : 'night.png';
     Color bgColor = data['isDaytime'] ? Colors.blue : Colors.indigo[800]!;
